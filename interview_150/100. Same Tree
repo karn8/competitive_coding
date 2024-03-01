@@ -8,3 +8,32 @@ public:
         return L && R;
     }
 };
+
+//----------------------postorder approach !! check for BST---------------
+
+'''
+class Solution {
+public:
+    void postorder(TreeNode* p, vector<int> order){
+        if (p == NULL){
+            order.push_back(0);
+            return;
+        }
+
+        postorder(p->left, order);
+
+        postorder(p->right, order);
+
+        order.push_back(p->val);
+    }
+
+    bool isSameTree(TreeNode* p, TreeNode* q){
+        vector<int> tree1;
+        vector<int> tree2;
+
+        postorder(p, tree1);
+        postorder(q, tree2);
+
+        return tree1==tree2;
+    }
+}; '''
